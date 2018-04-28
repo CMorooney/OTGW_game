@@ -11,6 +11,9 @@ public class GregController : MonoBehaviour
     public float MovementSpeed = 3;
 
     Animator Animator;
+    float LastX;
+    float LastY;
+    float LastZ;
 
     void Start()
     {
@@ -27,42 +30,50 @@ public class GregController : MonoBehaviour
     {
         var direction = WirtController.GetCurrentDirection();
 
-        var xPosition = 0f;
-        var yPosition = 0f;
-        var zPosition = 0f;
-
         switch(direction)
         {
             case Direction.Down:
-                zPosition = 1;
-                xPosition = Wirt.position.x;
-                yPosition = Wirt.position.y + FollowDistance;
+                Animator.SetInteger(AnimationConstants.HorizontalMovement, 0);
+                Animator.SetInteger(AnimationConstants.VerticalMovement, 1);
+
+                LastZ = 2;
+                LastX = Wirt.position.x;
+                LastY = Wirt.position.y + FollowDistance;
                 break;
 
             case Direction.Up:
-                zPosition = -1;
-                xPosition = Wirt.position.x;
-                yPosition = Wirt.position.y - FollowDistance;
+                Animator.SetInteger(AnimationConstants.HorizontalMovement, 0);
+                Animator.SetInteger(AnimationConstants.VerticalMovement, -1);
+
+                LastZ = -1;
+                LastX = Wirt.position.x;
+                LastY = Wirt.position.y - FollowDistance;
                 break;
 
             case Direction.Right:
-                zPosition = 1;
-                xPosition = Wirt.position.x - FollowDistance;
-                yPosition = Wirt.position.y;
+                Animator.SetInteger(AnimationConstants.HorizontalMovement, 1);
+                Animator.SetInteger(AnimationConstants.VerticalMovement, 0);
+
+                LastZ = 2;
+                LastX = Wirt.position.x - FollowDistance;
+                LastY = Wirt.position.y;
                 break;
 
             case Direction.Left:
-                zPosition = 1;
-                xPosition = Wirt.position.x + FollowDistance;
-                yPosition = Wirt.position.y;
+                Animator.SetInteger(AnimationConstants.HorizontalMovement, -1);
+                Animator.SetInteger(AnimationConstants.VerticalMovement, 0);
+
+                LastZ = 2;
+                LastX = Wirt.position.x + FollowDistance;
+                LastY = Wirt.position.y;
+                break;
+
+            default:
+                Animator.SetInteger(AnimationConstants.HorizontalMovement, 0);
+                Animator.SetInteger(AnimationConstants.VerticalMovement, 0);
                 break;
         }
 
-        transform.position = new Vector3(xPosition, yPosition, zPosition);
-    }
-
-    void Animate()
-    {
-        
+        transform.position = Vector3.Lerp(transform.position, new Vector3(LastX, LastY, LastZ), .25f);
     }
 }

@@ -3,5 +3,6 @@
     Left,
     Right,
     Up,
-    Down
+    Down,
+    Idle
 }

@@ -76,7 +76,9 @@ public class WirtController : MonoBehaviour
             transform.Translate(new Vector3(0, verticalInput * MovementSpeed * Time.deltaTime), 0);
         }
         else
-        {            
+        {
+            CurrentDirection = Direction.Idle;
+
             Animator.SetInteger(AnimationConstants.HorizontalMovement, 0);
             Animator.SetInteger(AnimationConstants.VerticalMovement, 0);
         }
