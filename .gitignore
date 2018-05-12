@@ -4,11 +4,17 @@
 
 ### Unity ###
 */[Ll]ibrary/
+Unity/OTGW/Library/
 */[Tt]emp/
+Unity/OTGW/[Tt]emp
 */[Oo]bj/
+Unity/OTGW/[Oo]bj/
 */[Bb]uild/
+Unity/OTGW/[Bb]uild/
 */[Bb]uilds/
+Unity/OTGW/[Bb]uilds/
 */Assets/AssetStoreTools*
+Unity/OTGW/Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
 */.vs/
