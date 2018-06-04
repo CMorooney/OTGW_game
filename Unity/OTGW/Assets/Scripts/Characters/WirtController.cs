@@ -5,6 +5,8 @@ public class WirtController : MonoBehaviour
 {
     public float MovementSpeed = 3;
 
+	public DialogManager DialogManager;
+
     Direction CurrentDirection = Direction.Down;
     Animator Animator;
     Queue<Transform> PositionQueue;
@@ -17,10 +19,10 @@ public class WirtController : MonoBehaviour
         PositionQueue = new Queue<Transform>();
     }
 
-    //called every frame
     void Update()
     {
-        HandleKeyInput();
+		HandleMovement();
+		CheckForDialog();
 
         PositionQueue.Enqueue(transform);
     }
@@ -42,7 +44,15 @@ public class WirtController : MonoBehaviour
         return Vector3.zero;
     }
 
-    void HandleKeyInput()
+    void CheckForDialog()
+	{
+		if (Input.GetKeyDown(KeyCode.Return))
+		{
+			DialogManager.RequestRockFact();
+		}
+	}
+
+    void HandleMovement()
     {
         var horizontalInput = Input.GetAxisRaw(UnityConstants.HorizontalAxis);
         var verticalInput = Input.GetAxisRaw(UnityConstants.VerticalAxis);

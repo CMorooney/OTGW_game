@@ -1,6 +1,7 @@
 ﻿public static class GameConstants
 {
     public const string WirtName = "Wirt";
+	public const string GregName = "Greg";
 
     #region Resource file paths
 
